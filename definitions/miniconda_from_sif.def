@@ -1,5 +1,5 @@
 Bootstrap: localimage
-From: /home/minkoo/Singularity-template/images/ubuntu.sif
+From: ../images/ubuntu.sif
 
 %labels
     APPLICATION_NAME miniconda3
