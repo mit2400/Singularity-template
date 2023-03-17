@@ -73,10 +73,6 @@ From: images/ubuntu.sif
     # Remove conda installer
     rm "${CONDA_INSTALLER}"
 
-    # Modify with custom changes
-    ## conda install -y -c conda-forge numpy matplotlib astropy
-    ## conda clean -afy
-
     # Cleanup
     apt-get -y autoremove --purge
     apt-get -y clean

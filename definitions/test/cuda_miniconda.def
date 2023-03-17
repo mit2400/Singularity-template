@@ -7,6 +7,9 @@ From: images/ubuntu.sif
 
 %setup
 
+%files
+    /home/minkoo/cuda/cuda_11.7.0_515.43.04_linux.run /opt
+
 %environment
 
     # Set the conda distribution type, its version number, the python
@@ -22,6 +25,9 @@ From: images/ubuntu.sif
 
     # Set PATH to conda distribution
     export PATH="${CONDA_INSTALL_DIR}/bin:${PATH}"
+    export PATH=/usr/local/cuda-11.7/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib64:$LD_LIBRARY_PATH
+
 
 %post -c /bin/bash
 
@@ -74,20 +80,12 @@ From: images/ubuntu.sif
     # Remove conda installer
     rm "${CONDA_INSTALLER}"
 
-    # 	
-    wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_530.30.02_linux.run
-    bash cuda_12.1.0_530.30.02_linux.run
-    
-    
+    #load conda profile
+    source /opt/miniconda3/etc/profile.d/conda.sh
+
     # Modify with custom changes
     ## conda install -y -c conda-forge numpy matplotlib astropy
     ## conda clean -afy
-
-
-
-
-
-
 
     # Cleanup
     apt-get -y autoremove --purge
@@ -96,10 +94,11 @@ From: images/ubuntu.sif
     # Update database for mlocate
     updatedb
 
-%files
 
 %runscript
-    source /opt/miniconda3/etc/profile.d/conda.sh
+
+#install cuda using script
+#sh cuda_11.7.0_515.43.04_linux.run 
 
 %test
 
