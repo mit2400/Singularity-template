@@ -1,5 +1,5 @@
 Bootstrap: localimage
-From: ../images/ubuntu.sif
+From: images/ubuntu.sif
 
 %labels
     APPLICATION_NAME miniconda3
@@ -16,7 +16,7 @@ From: ../images/ubuntu.sif
     export CONDA_DISTRIBUTION='miniconda'
     export CONDA_VERSION='3'
     export CONDA_PYTHON_VERSION='py39'
-    export CONDA_INSTALLER_VERSION='4.11.0'
+    export CONDA_INSTALLER_VERSION='23.1.0-1'
     export CONDA_ARCH='Linux-x86_64'
     export CONDA_INSTALL_DIR="/opt/${CONDA_DISTRIBUTION}${CONDA_VERSION}"
 
@@ -40,13 +40,6 @@ From: ../images/ubuntu.sif
     # Modify apt source to kaist (more stable than kakao mirror during build test)
     sed -i -re 's/([a-z]{2}.)?archive.ubuntu.com|security.ubuntu.com/ftp.kaist.ac.kr/g' /etc/apt/sources.list
 
-    # Upgrade all software packages to their latest versions
-    apt-get -y update && apt-get -y upgrade
-
-    # Install common packages from 'main'
-    apt-get -y install autoconf automake build-essential cmake evince expect gfortran libtool mlocate \
-                pkg-config wget zip net-tools git vim
-
 
 ##################################
 ### install whatever using APT ###
@@ -63,10 +56,12 @@ From: ../images/ubuntu.sif
     # root URL to the installer
     export CONDA_DISTRIBUTION='miniconda'
     export CONDA_VERSION='3'
-    export CONDA_PYTHON_VERSION='py39'
-    export CONDA_INSTALLER_VERSION='4.11.0'
+#    export CONDA_PYTHON_VERSION='py39'
+    export CONDA_INSTALLER_VERSION='latest'
+
     export CONDA_ARCH='Linux-x86_64'
-    export CONDA_INSTALLER="${CONDA_DISTRIBUTION^}${CONDA_VERSION}-${CONDA_PYTHON_VERSION}_${CONDA_INSTALLER_VERSION}-${CONDA_ARCH}.sh"
+#    export CONDA_INSTALLER="${CONDA_DISTRIBUTION^}${CONDA_VERSION}-${CONDA_PYTHON_VERSION}_${CONDA_INSTALLER_VERSION}-${CONDA_ARCH}.sh"
+    export CONDA_INSTALLER="${CONDA_DISTRIBUTION^}${CONDA_VERSION}-${CONDA_INSTALLER_VERSION}-${CONDA_ARCH}.sh"
     export CONDA_INSTALL_DIR="/opt/${CONDA_DISTRIBUTION}${CONDA_VERSION}"
     export CONDA_ROOT_URL='https://repo.anaconda.com'
     echo "${CONDA_ROOT_URL}/${CONDA_DISTRIBUTION}/${CONDA_INSTALLER}"
