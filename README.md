@@ -36,7 +36,7 @@ If you need to install additional dependencies or dependencies can change depend
 First, build a sandbox directory from definition files
 
 ```bash
-sudo singularity build --sandbox $PATH/<name> definitions/miniconda_from_sif.def
+sudo singularity build --sandbox $PATH/<name> definitions/miniconda/miniconda_4.11.0.def
 ```
 
 
