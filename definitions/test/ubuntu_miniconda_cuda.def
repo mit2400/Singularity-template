@@ -15,8 +15,8 @@ From: images/ubuntu.sif
     # root URL to the installer
     export CONDA_DISTRIBUTION='miniconda'
     export CONDA_VERSION='3'
-    export CONDA_PYTHON_VERSION='py39'
-    export CONDA_INSTALLER_VERSION='23.1.0-1'
+#    export CONDA_PYTHON_VERSION='py39'
+    export CONDA_INSTALLER_VERSION='latest'
     export CONDA_ARCH='Linux-x86_64'
     export CONDA_INSTALL_DIR="/opt/${CONDA_DISTRIBUTION}${CONDA_VERSION}"
 
@@ -74,9 +74,20 @@ From: images/ubuntu.sif
     # Remove conda installer
     rm "${CONDA_INSTALLER}"
 
+    # 	
+    wget https://developer.download.nvidia.com/compute/cuda/12.1.0/local_installers/cuda_12.1.0_530.30.02_linux.run
+    bash cuda_12.1.0_530.30.02_linux.run
+    
+    
     # Modify with custom changes
     ## conda install -y -c conda-forge numpy matplotlib astropy
     ## conda clean -afy
+
+
+
+
+
+
 
     # Cleanup
     apt-get -y autoremove --purge
