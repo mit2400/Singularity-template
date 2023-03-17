@@ -18,17 +18,15 @@ Build the image(.sif) if you don't need to make any additional changes.
 Example command to build a image.
 
 ```bash
-sudo singularity build images/miniconda.sif definitions/miniconda.def
+sudo singularity build images/miniconda.sif definitions/miniconda/miniconda_4.11.0_buildall.def
 ```
 
 You can build the image from base ubuntu image to reduce the build time.
 
 But boostrap and file location in definition should be modified accroding to your environment.
 
-
-
 ```bash
-sudo singularity build images/miniconda_from_sif.sif definitions/miniconda_from_sif.def
+sudo singularity build images/miniconda_from_sif.sif definitions/miniconda/miniconda_4.11.0.def
 ```
 
 ## 3. Build a singularity image with additional modifications using '--sandbox' option
