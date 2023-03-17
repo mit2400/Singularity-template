@@ -60,7 +60,7 @@ source /opt/miniconda3/etc/profile.d/conda.sh
 ```
 
 ## Caution
-Packages installed in '$HOME/<PATH>' will be ignored in singularity build process
+Packages installed in '$HOME/<PATH>' will be ignored during singularity image build process
 
 e.g., 
 
