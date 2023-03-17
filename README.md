@@ -5,6 +5,7 @@ Simple singularity templates for ML/DL task.
 ## 1. Install Singularity and system dependencies
 
 Install singularity following [the official document](https://docs.sylabs.io/guides/3.7/admin-guide/installation.html).
+
 Install system dependencies to build base ubuntu image.
 
 ```bash
