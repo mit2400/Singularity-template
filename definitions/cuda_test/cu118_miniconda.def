@@ -8,7 +8,6 @@ From: images/ubuntu.sif
 %setup
 
 %files
-    /home/minkoo/cuda/cuda_11.7.0_515.43.04_linux.run /opt
 
 %environment
 
@@ -18,16 +17,17 @@ From: images/ubuntu.sif
     # root URL to the installer
     export CONDA_DISTRIBUTION='miniconda'
     export CONDA_VERSION='3'
-#    export CONDA_PYTHON_VERSION='py39'
+    export CONDA_PYTHON_VERSION='py39'
     export CONDA_INSTALLER_VERSION='latest'
     export CONDA_ARCH='Linux-x86_64'
     export CONDA_INSTALL_DIR="/opt/${CONDA_DISTRIBUTION}${CONDA_VERSION}"
 
     # Set PATH to conda distribution
     export PATH="${CONDA_INSTALL_DIR}/bin:${PATH}"
-    export PATH=/usr/local/cuda-11.7/bin:$PATH
-    export LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib64:$LD_LIBRARY_PATH
 
+    #CUDA PATH
+    export PATH=/usr/local/cuda-11.8/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH
 
 %post -c /bin/bash
 
@@ -62,7 +62,7 @@ From: images/ubuntu.sif
     # root URL to the installer
     export CONDA_DISTRIBUTION='miniconda'
     export CONDA_VERSION='3'
-#    export CONDA_PYTHON_VERSION='py39'
+    export CONDA_PYTHON_VERSION='py39'
     export CONDA_INSTALLER_VERSION='latest'
 
     export CONDA_ARCH='Linux-x86_64'
@@ -70,6 +70,8 @@ From: images/ubuntu.sif
     export CONDA_INSTALLER="${CONDA_DISTRIBUTION^}${CONDA_VERSION}-${CONDA_INSTALLER_VERSION}-${CONDA_ARCH}.sh"
     export CONDA_INSTALL_DIR="/opt/${CONDA_DISTRIBUTION}${CONDA_VERSION}"
     export CONDA_ROOT_URL='https://repo.anaconda.com'
+    echo "conda install PATH"
+    echo $CONDA_INSTALL_DIR
     echo "${CONDA_ROOT_URL}/${CONDA_DISTRIBUTION}/${CONDA_INSTALLER}"
 
     # Download and install conda distribution
@@ -87,6 +89,9 @@ From: images/ubuntu.sif
     ## conda install -y -c conda-forge numpy matplotlib astropy
     ## conda clean -afy
 
+    ## install monitoring tools
+    apt install -y htop net-tools sysstat iotop atop iftop nethogs glances    
+
     # Cleanup
     apt-get -y autoremove --purge
     apt-get -y clean
@@ -98,7 +103,7 @@ From: images/ubuntu.sif
 %runscript
 
 #install cuda using script
-#sh cuda_11.7.0_515.43.04_linux.run 
+#sh conda_install_script.run 
 
 %test
 
